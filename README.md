@@ -1,4 +1,4 @@
-# 🌟 Interfaz de Escaneo de Carpetas OVA (Vite)
+# 🌟 Folder Scan
 
 Este proyecto es una interfaz de usuario para escanear y gestionar carpetas OVA, construida utilizando [Vite](https://vitejs.dev/).
 
