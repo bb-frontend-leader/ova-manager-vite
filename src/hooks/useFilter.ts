@@ -18,9 +18,13 @@ export const useFilter = <T extends { title?: string; tags?: string[] }>(
 
     // Apply search filter if exists
     if (searchTerm) {
+      const normalize = (str: string) => str.toLowerCase().replace(/[-\s]/g, '');
+      const normalizedSearch = normalize(searchTerm);
+
+
       filteredData = filteredData.filter(
         (item) =>
-          item.title?.toLowerCase().includes(searchTerm.toLowerCase())
+          normalize(item.title || '').includes(normalizedSearch)
       );
     }
 
