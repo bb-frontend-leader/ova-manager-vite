@@ -10,8 +10,8 @@ export const Header = () => {
           <span className="sm:hidden">B&B</span>
         </a>
       </nav>
-      <h1 className="text-2xl font-bold text-black" aria-label="200 OVAS 2025">
-        <strong className="text-main">200</strong> OVAS 2025
+      <h1 className="text-2xl font-bold text-black" aria-label="120 OVAS 2023">
+        <strong className="text-main">120</strong> OVAS 2023
       </h1>
     </header>
   );
