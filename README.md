@@ -16,7 +16,7 @@ Este proyecto es una interfaz de usuario para escanear y gestionar carpetas OVA,
   ```
 2. Navega al directorio del proyecto:
   ```bash
-  cd ova-folder-scan-ui-vite
+  cd ova-manager
   ```
 3. Instala las dependencias:
   ```bash
