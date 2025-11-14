@@ -1,24 +1,44 @@
-import { ServerCrash } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
-import { Alert, AlertDescription, AlertTitle, Footer, Header, Toaster } from "@ui";
+import { useEffect } from 'react';
+import { ServerCrash } from 'lucide-react';
+import { useLocation } from 'wouter';
+import { useQuery } from '@tanstack/react-query';
+import { Alert, AlertDescription, AlertTitle, Footer, Header } from '@ui';
 
-import { OvaView, OvaViewSkeleton } from "@/components/app";
-import ovaService from "@/services/ova-service";
+import { OvaView, OvaViewSkeleton } from '@/components/app';
+import { useAuth } from '@/hooks/useAuth';
+import ovaService from '@/services/ova-service';
 
-function App() {
+const MainPage = () => {
+  const [, setLocation] = useLocation();
+  const { isAuthenticated } = useAuth();
+
+  // Get the OVAs
   const ovas = useQuery({
-    queryKey: ["ovas"],
+    queryKey: ['ovas'],
     queryFn: () => ovaService.fetchOvas(),
     refetchOnWindowFocus: false,
-    retry: false,
+    retry: false
   });
 
+  // Get the OVA groups
   const groups = useQuery({
-    queryKey: ["groups"],
+    queryKey: ['groups'],
     queryFn: () => ovaService.fetchOvaGroups(),
     refetchOnWindowFocus: false,
-    retry: false,
+    retry: false
   });
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      setLocation('/login');
+    }
+  }, [isAuthenticated, setLocation]);
+
+  // Check authentication before rendering
+  if (!isAuthenticated()) {
+    return null;
+  }
 
   return (
     <div className="relative min-h-screen w-full bg-bg grid grid-rows-[auto_1fr_auto] gap-3.5">
@@ -47,15 +67,12 @@ function App() {
 
           {(ovas.isLoading || groups.isLoading) && <OvaViewSkeleton />}
 
-          {ovas.isSuccess && groups.isSuccess && (
-            <OvaView data={ovas.data.data} groups={groups.data.data} />
-          )}
+          {ovas.isSuccess && groups.isSuccess && <OvaView data={ovas.data.data} groups={groups.data.data} />}
         </section>
       </main>
-      <Toaster />
       <Footer />
     </div>
   );
-}
+};
 
-export default App;
+export default MainPage;
