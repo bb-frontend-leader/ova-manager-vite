@@ -10,8 +10,8 @@ export const Header = () => {
         </a>
       </nav>
       <div className="flex items-center justify-between gap-2 pr-2 w-full">
-        <h1 className="text-2xl font-bold text-black" aria-label="120 OVAS 2023">
-          <strong className="text-main">120</strong> OVAS 2023
+        <h1 className="text-2xl font-bold text-black" aria-label="200 OVAS 2025">
+          <strong className="text-main">200</strong> OVAS 2025
         </h1>
         <SignOut />
       </div>
