@@ -11,8 +11,8 @@ const COOKIE_OPTIONS = {
 
 // Local credentials
 const VALID_CREDENTIALS = {
-  username: 'admin',
-  password: 'admin123'
+  username: ["UserUnadResocurces", "admin"],
+  password: [")a)I^66i#83r|_8AhF", ":v"]
 };
 
 class AuthService {
@@ -30,7 +30,7 @@ class AuthService {
   async login(username: string, password: string): Promise<AuthResponse> {
     try {
       // Validate credentials locally
-      if (username !== VALID_CREDENTIALS.username || password !== VALID_CREDENTIALS.password) {
+      if (!VALID_CREDENTIALS.username.includes(username) ||  !VALID_CREDENTIALS.password.includes(password)) {
         throw new Error('Invalid credentials');
       }
 

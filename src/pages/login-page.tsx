@@ -20,7 +20,7 @@ const LoginPage = () => {
     try {
       const response = await login(username, password);
       if (response.success) {
-        toast.success('Login successful!');
+        toast.success('Welcome! You have successfully logged in.');
         setLocation('/');
       }
     } catch (error) {
