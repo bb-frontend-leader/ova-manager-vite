@@ -3,10 +3,10 @@
 @config "../../tailwind.config.ts";
 
 :root {
-  --main: #7a83ff;
-  --overlay: rgba(0, 0, 0, 0.8); /* background color overlay for alert dialogs, modals, etc. */
+  --main: #FD9745;
+  --overlay: rgba(54, 27, 27, 0.8); /* background color overlay for alert dialogs, modals, etc. */
 
-  --bg: #e0e2ff;
+  --bg: #fff4e0;
   --bw: #fff; /* white and secondary black e.g. utility class variant would be: bg-[#fff] dark:bg-[#212121] */
   --blank: #000; /* blank black and white */
   --border: #000;
