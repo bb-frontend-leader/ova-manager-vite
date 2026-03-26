@@ -1,18 +1,28 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
+
+export type SortOrder = 'asc' | 'desc' | 'none';
 
 export const useFilter = <T extends { title?: string; tags?: string[] }>(
-  rawData: T[]
+  rawData: T[],
+  initialSearch = "",
+  initialFilters: string[] = [],
+  initialSort: SortOrder = 'none'
 ): {
   data: T[];
+  searchTerm: string;
+  activeFilters: string[];
+  sortOrder: SortOrder;
   handleSearch: (searchTerm: string) => void;
   handleFilter: (filters: string[]) => void;
+  handleSort: (order: SortOrder) => void;
   resetFilters: () => void;
 } => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>(initialSearch);
+  const [activeFilters, setActiveFilters] = useState<string[]>(initialFilters);
+  const [sortOrder, setSortOrder] = useState<SortOrder>(initialSort);
   const [data, setData] = useState<T[]>(rawData);
 
-  // Apply both search and filters whenever either changes
+  // Apply search, tag filters, and sort whenever any of them change
   useEffect(() => {
     let filteredData = [...rawData];
 
@@ -20,59 +30,59 @@ export const useFilter = <T extends { title?: string; tags?: string[] }>(
     if (searchTerm) {
       const normalize = (str: string) => str.toLowerCase().replace(/[-\s]/g, '');
       const normalizedSearch = normalize(searchTerm);
-
-
       filteredData = filteredData.filter(
-        (item) =>
-          normalize(item.title || '').includes(normalizedSearch)
+        (item) => normalize(item.title || '').includes(normalizedSearch)
       );
     }
 
     // Apply tag filters if any exist
     if (activeFilters.length > 0) {
-      // First, filter items that match at least one filter
       filteredData = filteredData.filter((item) =>
         activeFilters.some((filter) =>
-          item.tags
-            ?.map((tag) => tag.toLowerCase())
-            .includes(filter.toLowerCase())
+          item.tags?.map((tag) => tag.toLowerCase()).includes(filter.toLowerCase())
         )
       );
 
-      // Then sort by number of matching filters (highest first)
+      // Sort by relevance (match count) only when no explicit sort is active
+      if (sortOrder === 'none') {
+        filteredData.sort((a, b) => {
+          const aMatch = activeFilters.filter(f =>
+            a.tags?.map(t => t.toLowerCase()).includes(f.toLowerCase())
+          ).length;
+          const bMatch = activeFilters.filter(f =>
+            b.tags?.map(t => t.toLowerCase()).includes(f.toLowerCase())
+          ).length;
+          return bMatch - aMatch;
+        });
+      }
+    }
+
+    // Explicit alphabetical sort overrides relevance sort
+    if (sortOrder !== 'none') {
       filteredData.sort((a, b) => {
-        const aMatchCount = activeFilters.filter(filter =>
-          a.tags?.map(tag => tag.toLowerCase()).includes(filter.toLowerCase())
-        ).length;
-
-        const bMatchCount = activeFilters.filter(filter =>
-          b.tags?.map(tag => tag.toLowerCase()).includes(filter.toLowerCase())
-        ).length;
-
-        return bMatchCount - aMatchCount; // Descending order (highest first)
+        const aTitle = (a.title || '').toLowerCase();
+        const bTitle = (b.title || '').toLowerCase();
+        return sortOrder === 'asc'
+          ? aTitle.localeCompare(bTitle)
+          : bTitle.localeCompare(aTitle);
       });
     }
 
     setData(filteredData);
-  }, [searchTerm, activeFilters, rawData]);
-
-  const handleSearch = (term: string) => {
-    setSearchTerm(term);
-  };
-
-  const handleFilter = (filters: string[]) => {
-    setActiveFilters(filters);
-  };
-
-  const resetFilters = () => {
-    setSearchTerm("");
-    setActiveFilters([]);
-  };
+  }, [searchTerm, activeFilters, sortOrder, rawData]);
 
   return {
     data,
-    handleSearch,
-    handleFilter,
-    resetFilters
+    searchTerm,
+    activeFilters,
+    sortOrder,
+    handleSearch: (term: string) => setSearchTerm(term),
+    handleFilter: (filters: string[]) => setActiveFilters(filters),
+    handleSort: (order: SortOrder) => setSortOrder(order),
+    resetFilters: () => {
+      setSearchTerm("");
+      setActiveFilters([]);
+      setSortOrder('none');
+    },
   };
 };

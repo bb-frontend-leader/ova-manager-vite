@@ -65,7 +65,15 @@ const MainPage = () => {
             </div>
           )}
 
-          {(ovas.isLoading || groups.isLoading) && <OvaViewSkeleton />}
+          {(ovas.isLoading || groups.isLoading) && (
+            <OvaViewSkeleton
+              viewMode={
+                (new URLSearchParams(
+                  window.location.hash.includes('?') ? window.location.hash.split('?')[1] : ''
+                ).get('view') as 'grid' | 'list') ?? 'grid'
+              }
+            />
+          )}
 
           {ovas.isSuccess && groups.isSuccess && <OvaView data={ovas.data.data} groups={groups.data.data} />}
         </section>

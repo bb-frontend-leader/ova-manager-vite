@@ -12,7 +12,7 @@ Este proyecto es una interfaz de usuario para escanear y gestionar carpetas OVA,
 
 1. Clona el repositorio:
   ```bash
-  git clone git@github.com:200-OVAs-2025/ova-manager.git
+  git clone git@github.com:300-OVAs-2026/ova-manager.git
   ```
 2. Navega al directorio del proyecto:
   ```bash

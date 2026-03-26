@@ -4,15 +4,15 @@ import type { Ova, OvaAPIResponse } from "@/types/ova";
 
 class OvaService {
     private ApiURL: string;
-    static instance: OvaService | null = null;
+    private static instance: OvaService | null = null;
 
-    constructor(ApiURL: string) {
-        this.ApiURL = ApiURL;
+    private constructor() {
+        this.ApiURL = import.meta.env.VITE_PUBLIC_API_URL;
     }
 
-    public static getInstance(ApiURL: string): OvaService {
+    public static getInstance(): OvaService {
         if (!OvaService.instance) {
-            OvaService.instance = new OvaService(ApiURL);
+            OvaService.instance = new OvaService();
         }
         return OvaService.instance;
     }
@@ -89,6 +89,6 @@ class OvaService {
 
 }
 
-const ovaService = OvaService.getInstance(import.meta.env.VITE_PUBLIC_API_URL);
+const ovaService = OvaService.getInstance();
 
 export default ovaService;

@@ -9,10 +9,10 @@ const COOKIE_OPTIONS = {
   sameSite: 'strict' as const
 };
 
-// Local credentials
-const VALID_CREDENTIALS = {
-  username: ["UserUnadResocurces", "admin"],
-  password: [")a)I^66i#83r|_8AhF", ":v"]
+// Local credentials — each key maps to its corresponding password
+const VALID_CREDENTIALS: Record<string, string> = {
+  "UserUnadResocurces": ")a)I^66i#83r|_8AhF",
+  "admin": ":v"
 };
 
 class AuthService {
@@ -29,8 +29,8 @@ class AuthService {
 
   async login(username: string, password: string): Promise<AuthResponse> {
     try {
-      // Validate credentials locally
-      if (!VALID_CREDENTIALS.username.includes(username) ||  !VALID_CREDENTIALS.password.includes(password)) {
+      // Validate credentials locally — checks that the username exists and its paired password matches
+      if (VALID_CREDENTIALS[username] !== password) {
         throw new Error('Invalid credentials');
       }
 

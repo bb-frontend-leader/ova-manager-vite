@@ -38,7 +38,7 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
   };
 
   return (
-    <Card className="w-full bg-white">
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>Welcome back</CardTitle>
         <CardDescription className="text-text/60">Enter your credentials to access the platform.</CardDescription>

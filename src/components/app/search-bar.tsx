@@ -7,10 +7,11 @@ import { Input } from "../ui/input";
 
 interface Props {
   onSearch: (searchTerm: string) => void;
+  defaultValue?: string;
 }
 
-export const SearchBar: React.FC<Props> = ({ onSearch }) => {
-  const [search, setSearch] = useState<string>("");
+export const SearchBar: React.FC<Props> = ({ onSearch, defaultValue }) => {
+  const [search, setSearch] = useState<string>(defaultValue ?? "");
   const debouncedSearch = useDebounce(search, 300);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
