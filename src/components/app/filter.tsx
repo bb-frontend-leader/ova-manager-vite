@@ -127,7 +127,7 @@ export const Filter: React.FC<Props> = ({
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.15 }}>
-                <Badge variant="neutral" className="flex items-center gap-1 capitalize">
+                <Badge variant="default" className="flex items-center gap-1 uppercase">
                   {filter}
                   <button
                     onClick={() => removeChip(filter)}

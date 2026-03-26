@@ -21,11 +21,11 @@ export const Header = () => {
         </h1>
         <div className="flex items-center gap-2">
           <Button
-            variant="neutral"
+            variant="reverse"
             size="icon"
+            className="bg-bw text-text"
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            aria-label="Toggle dark mode"
-          >
+            aria-label="Toggle dark mode">
             {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </Button>
           <SignOut />

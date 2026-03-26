@@ -128,7 +128,7 @@ export const OvaCard: React.FC<Props> = ({ ova, viewMode = 'grid' }) => {
                 <Link className="h-3 w-3" />
               </button>
             </div>
-            <Badge variant="neutral" className="text-xs font-light capitalize mt-1">
+            <Badge variant="neutral" className="text-xs font-light uppercase mt-1">
               {ova?.group || 'Group-2'}
             </Badge>
           </div>
@@ -164,7 +164,7 @@ export const OvaCard: React.FC<Props> = ({ ova, viewMode = 'grid' }) => {
               <Link className="h-3.5 w-3.5" />
             </button>
           </div>
-          <Badge variant="neutral" className="text-sm font-light capitalize">
+          <Badge variant="neutral" className="text-xs font-light uppercase">
             {ova?.group || 'Group-2'}
           </Badge>
         </div>

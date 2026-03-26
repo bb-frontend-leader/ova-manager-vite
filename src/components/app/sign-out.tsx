@@ -16,7 +16,7 @@ export const SignOut = () => {
   };
 
   return (
-    <Button variant="reverse" className="bg-transparent" aria-label="Sign out" onClick={handleSignOut}>
+    <Button variant="reverse" className="bg-bw text-text" aria-label="Sign out" onClick={handleSignOut}>
       <LogOut className="h-4 w-4 mr-2" /> <span className="hidden md:inline">Sign Out</span>
     </Button>
   );
