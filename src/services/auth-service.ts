@@ -4,7 +4,7 @@ import { deleteCookie, getCookie, setCookie } from '@/utils/cookies';
 const COOKIE_NAME = 'ovas_auth_token';
 const COOKIE_OPTIONS = {
   path: '/',
-  maxAge: 24 * 60 * 60, // 24 hours
+  maxAge: 48 * 60 * 60, // 48 hours
   secure: true,
   sameSite: 'strict' as const
 };

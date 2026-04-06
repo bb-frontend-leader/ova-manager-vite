@@ -16,8 +16,8 @@ export const Header = () => {
         </a>
       </nav>
       <div className="flex items-center justify-between gap-2 pr-2 w-full">
-        <h1 className="text-2xl font-bold" aria-label="300 OVAS 2026">
-          <strong className="text-main">300</strong> OVAS 2026
+        <h1 className="text-2xl font-bold" aria-label="[Template]">
+          <strong className="text-main">[Template]</strong> [Template]
         </h1>
         <div className="flex items-center gap-2">
           <Button

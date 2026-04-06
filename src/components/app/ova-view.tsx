@@ -94,7 +94,7 @@ export const OvaView: React.FC<Props> = ({ data, groups }) => {
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.18 }}
           className={clsx(
-            'container-border px-10 py-8 not-prose z-[15] relative bg-[radial-gradient(#80808080_1px,transparent_1px)] shadow-light dark:shadow-dark [background-size:16px_16px]',
+            'container-border px-10 py-8 not-prose z-15 relative bg-[radial-gradient(#80808080_1px,transparent_1px)] shadow-light dark:shadow-dark bg-size-[16px_16px]',
             {
               'container-grid': filteredData.length > 0 && viewMode === 'grid',
               'flex flex-col gap-2': filteredData.length > 0 && viewMode === 'list'

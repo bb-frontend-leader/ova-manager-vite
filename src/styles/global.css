@@ -1,17 +1,54 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
-@config "../../tailwind.config.ts";
+@import 'tw-animate-css';
+
+@theme inline {
+  /* Brand colors */
+  --color-main: var(--main);
+  --color-overlay: var(--overlay);
+  --color-blank: var(--blank);
+
+  /* Semantic colors — V4 names */
+  --color-background: var(--background);
+  --color-secondary-background: var(--secondary-background);
+  --color-foreground: var(--foreground);
+  --color-main-foreground: var(--main-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-ring-offset: var(--ring-offset);
+
+  /* V3 compat aliases (used in header, footer, ova-card) */
+  --color-bg: var(--background);
+  --color-bw: var(--secondary-background);
+  --color-text: var(--foreground);
+  --color-mtext: var(--main-foreground);
+
+  /* Border radius */
+  --radius-base: 5px;
+
+  /* Box shadow */
+  --shadow-shadow: var(--shadow);
+
+  /* Font weights */
+  --font-weight-base: 500;
+  --font-weight-heading: 700;
+
+  /* Translate values for neobrutalism hover effects */
+  --translate-boxShadowX: -6px;
+  --translate-boxShadowY: 4px;
+  --translate-reverseBoxShadowX: 6px;
+  --translate-reverseBoxShadowY: -4px;
+}
 
 :root {
   --main: #f0b62d;
   --overlay: #FFEBCE; /* background color overlay for alert dialogs, modals, etc. */
 
-  --bg: #FFEBCE;
-  --bw: #fff; /* white and secondary black e.g. utility class variant would be: bg-[#fff] dark:bg-[#212121] */
+  --background: #FFEBCE;
+  --secondary-background: #fff; /* white and secondary black e.g. utility class variant would be: bg-[#fff] dark:bg-[#212121] */
   --blank: #121212; /* blank black and white */
   --border: #121212;
-  --text: #121212;
-  --mtext: #121212; /* text that is placed on background with main color e.g. text color of default button */
+  --foreground: #121212;
+  --main-foreground: #121212; /* text that is placed on background with main color e.g. text color of default button */
   --ring: #121212;
   --ring-offset: #fff;
 
@@ -27,12 +64,12 @@
 }
 
 .dark {
-  --bg: #272933;
-  --bw: #212121;
+  --background: #272933;
+  --secondary-background: #212121;
   --blank: #fff;
   --border: #121212;
-  --text: #e6e6e6;
-  --mtext: #121212;
+  --foreground: #e6e6e6;
+  --main-foreground: #121212;
   --ring: #fff;
   --ring-offset: #121212;
 
@@ -41,10 +78,10 @@
 
 /* Customs class */
 .container-border {
-  @apply border-2 border-border rounded-md bg-bw;
+  @apply border-2 border-border rounded-md bg-secondary-background;
 }
 
 .container-grid {
-  @apply grid place-content-start grid-cols-[repeat(auto-fit,_minmax(min(100%,_30ch),_1fr))] gap-3.5;
+  @apply grid place-content-start grid-cols-[repeat(auto-fit,minmax(min(100%,30ch),1fr))] gap-3.5;
 }
 

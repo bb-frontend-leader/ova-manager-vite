@@ -11,16 +11,14 @@ export default {
       colors: {
         main: 'var(--main)',
         overlay: 'var(--overlay)',
-        bg: 'var(--bg)',
-        bw: 'var(--bw)',
-        blank: 'var(--blank)',
-        text: 'var(--text)',
-        mtext: 'var(--mtext)',
+        background: 'var(--background)',
+        'secondary-background': 'var(--secondary-background)',
+        foreground: 'var(--foreground)',
+        'main-foreground': 'var(--main-foreground)',
         border: 'var(--border)',
         ring: 'var(--ring)',
         ringOffset: 'var(--ring-offset)',
-        
-        secondaryBlack: '#212121', 
+        secondaryBlack: '#212121',
       },
       borderRadius: {
         base: '5px'
