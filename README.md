@@ -1,46 +1,88 @@
-# 🌟 Folder Scan
+# 🌟 OVA Folder Scan — UI
 
-Este proyecto es una interfaz de usuario para escanear y gestionar carpetas OVA, construida utilizando [Vite](https://vitejs.dev/).
+Interfaz de usuario para explorar, buscar y gestionar OVAs (Objetos Virtuales de Aprendizaje) escaneados desde carpetas en el servidor.
 
 ## ✨ Características
 
-- ⚡ Interfaz rápida y ligera.
-- 📂 Herramientas para escaneo y gestión de carpetas.
-- 🛠️ Configuración moderna de desarrollo con Vite.
+- 🔐 Autenticación local con sesión persistente en cookie (48 h) y rutas protegidas.
+- 📦 Listado de OVAs consumido desde una API REST con adaptador de datos.
+- 🔍 Búsqueda en tiempo real por título con normalización de texto.
+- 🏷️ Filtrado por etiquetas (tags) con ordenamiento por relevancia.
+- 🔃 Ordenamiento alfabético ascendente / descendente.
+- 💅 UI construida con componentes Radix UI + Tailwind CSS v4.
+- 🔔 Notificaciones tipo toast con Sonner.
+- ⚡ Data fetching y caché con TanStack Query v5.
 
 ## 📥 Instalación
 
 1. Clona el repositorio:
-  ```bash
-  git clone git@github.com:300-OVAs-2026/ova-manager.git
-  ```
-2. Navega al directorio del proyecto:
-  ```bash
-  cd ova-manager
-  ```
-3. Instala las dependencias:
-  ```bash
-  npm install
-  ```
+   ```bash
+   git clone git@github.com:300-OVAs-2026/ova-manager.git
+   cd ova-folder-scan-ui-vite
+   ```
+
+2. Instala las dependencias:
+   ```bash
+   npm install
+   ```
+
+3. Crea el archivo de variables de entorno en la raíz del proyecto:
+   ```bash
+   cp .env.example .env
+   ```
+   Luego edita `.env` y define la URL base de la API:
+   ```env
+   VITE_PUBLIC_API_URL=http://localhost:3000/api/ovas
+   ```
 
 ## 🚀 Uso
 
 ### 🧑‍💻 Desarrollo
-Inicia el servidor de desarrollo:
 ```bash
 npm run dev
 ```
+El servidor de desarrollo corre en `http://localhost:4321`.
 
 ### 🏗️ Construcción
-Construye el proyecto para producción:
 ```bash
 npm run build
 ```
 
-## 🤝 Contribuciones
+### 👁️ Previsualización del build
+```bash
+npm run preview
+```
 
-¡Las contribuciones son bienvenidas! Por favor, haz un fork del repositorio y envía un pull request.
+### 🧹 Lint
+```bash
+npm run lint
+```
 
-## 📜 Licencia
+### 📝 Commits estandarizados
+```bash
+npx cz
+```
+Usa Commitizen con la convención `conventional-changelog`.
 
-Este proyecto está licenciado bajo la [Licencia MIT](LICENSE).
+## 📁 Estructura del proyecto
+
+```
+src/
+├── adapters/       # Transformación de respuestas de la API al modelo interno
+├── components/
+│   ├── app/        # Componentes específicos de la aplicación (OvaCard, Filter, etc.)
+│   └── ui/         # Componentes base reutilizables (Button, Badge, Card, etc.)
+├── hooks/          # Hooks personalizados (useAuth, useFilter, useDebounce)
+├── pages/          # Páginas de la aplicación (LoginPage, MainPage)
+├── plugins/        # Providers globales (TanStack Query)
+├── router/         # Configuración del router
+├── services/       # Servicios de acceso a la API y autenticación
+├── types/          # Tipos e interfaces TypeScript
+└── utils/          # Utilidades generales (cookies, clean-string)
+```
+
+## ❤️ Hecho con el 💙 en Books&Books
+
+Nos enorgullece desarrollar este proyecto como parte del compromiso de **Books&Books** con la educación y la innovación tecnológica. 🌟🏆💪
+
+Gracias por visitar nuestro proyecto. ¡Juntos podemos hacer del aprendizaje una experiencia increíble! 🥳✨🎉🚀  
