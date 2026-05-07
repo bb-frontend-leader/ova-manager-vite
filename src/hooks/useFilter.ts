@@ -60,11 +60,11 @@ export const useFilter = <T extends { title?: string; tags?: string[] }>(
     // Explicit alphabetical sort overrides relevance sort
     if (sortOrder !== 'none') {
       filteredData.sort((a, b) => {
-        const aTitle = (a.title || '').toLowerCase();
-        const bTitle = (b.title || '').toLowerCase();
+        const aTitle = a.title || '';
+        const bTitle = b.title || '';
         return sortOrder === 'asc'
-          ? aTitle.localeCompare(bTitle)
-          : bTitle.localeCompare(aTitle);
+          ? aTitle.localeCompare(bTitle, undefined, { numeric: true, sensitivity: 'base' })
+          : bTitle.localeCompare(aTitle, undefined, { numeric: true, sensitivity: 'base' });
       });
     }
 
